@@ -1,0 +1,26 @@
+{% extends "Sugoi/layout.html" %}
+
+{% block body %}
+<h2>Directorio de anime</h2>
+<hr>
+    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+        {% for item in directorio %}
+            <a href="{% url 'anime' item.id %}" class="text-decoration-none">
+                <div class="card">
+                    <img src="{{ item.poster }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.type }}</p>
+                        <p class="card-text">{{ item.debut }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <ul class="pagination">
+        <li class="page-item">Previous</li>
+        {% for page in directorio.paginator.num_pages %}
+            <li class="page-item">{{page}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

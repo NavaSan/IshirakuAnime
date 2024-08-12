@@ -1,0 +1,38 @@
+{% extends "Sugoi/layout.html" %}
+
+{% block body %}
+    <div class="card mt-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ infoAnime.poster }}" alt="" class="img-fluid rounded start">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ infoAnime.title }}</h3>
+                    <p class="card-title">{{ infoAnime.synopsis }}</p>
+                    <p class="card-title"><b>Tipo: {{ infoAnime.type }}</b></p>
+                    <p class="card-title"><b>Raiting: {{ infoAnime.rating }}</b></p>
+                    <p class="card-title"><b>Estado: {{ infoAnime.debut }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for item in infoAnime.episodes %}
+    <a href="{% url 'episodio' item.anime item.id %}" class="text-decoration-none">
+        <div class="card mt-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ item.image_preview }}" alt="" class="img-fluid rounded-satrt">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ item.anime }}</h3>
+                        <p class="card-text">Capitulo {{ item.id }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+{% endblock %}

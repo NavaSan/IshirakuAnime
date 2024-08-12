@@ -1,0 +1,36 @@
+{% extends "Sugoi/layout.html" %}
+
+{% block body %}
+<div class="card text-center mt-5">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            {% for item in servidores %}
+                {% if item.ads == 0 %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="loadServer('{{ item.url|default:item.code }}')">{{ item.title }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="card-body">
+        <div style="height: 70vh;">
+            <iframe id="episode-frame" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadServer(url) {
+        document.getElementById('episode-frame').src = url;
+    }
+
+    // Load the first server automatically when the page loads
+    window.onload = function() {
+        const firstServer = document.querySelector('.nav-link');
+        if (firstServer) {
+            loadServer(firstServer.getAttribute('onclick').match(/loadServer\('(.*)'\)/)[1]);
+        }
+    };
+</script>
+{% endblock %}

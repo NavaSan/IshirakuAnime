@@ -1,0 +1,20 @@
+{% extends "Sugoi/layout.html" %}
+
+{% block body %}
+    <h2>Lista de resultados</h2>
+    <hr>
+    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+        {% for item in animeSearch %}
+            <a href="{% url 'anime' item.id %}" class="text-decoration-none">
+                <div class="card">
+                    <img src="{{ item.poster }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.type }}</p>
+                        <p class="card-text">{{ item.debut }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

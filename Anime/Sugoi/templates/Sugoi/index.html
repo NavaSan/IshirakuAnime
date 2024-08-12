@@ -1,0 +1,43 @@
+{% extends 'Sugoi/layout.html' %}
+
+{% block body %}
+<h2>Ultimos Epsiodios Agregados</h2>
+<hr>
+    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+        {% for item in animes %}
+            <a href="{% url 'episodio' item.anime item.id %}">
+                <div class="col">
+                    <div class="card text-bg-dark">
+                        <img src="{{ item.image_preview }}" alt="" class="card-img">
+                        <div class="card-img-overlay d-flex align-items-end">
+                            <div class="bg-light w-100 bg-opacity-50">
+                                <h6 class="card-title text-black">{{item.anime }}</h6>
+                                <p class="card-text text-black">{{ item.id }} Episodio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+    {% endfor %}
+    </div>
+
+    <h2>Ultimos animes</h2>
+    <hr>
+    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+        {% for item in estrenos %}
+            <a href="{% url 'anime' item.id %}" class="text-decoration-none">
+                <div class="card">
+                    <img src="https://animeflv.net{{ item.poster }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.type }}</p>
+                        <p class="card-text">{{ item.debut }}</p>
+                    </div>
+                </div>
+            </a> 
+        {% endfor %}
+    </div>
+    <ul>
+        
+    </ul>
+{% endblock %}
